@@ -14,13 +14,15 @@
 // 상수 또는 O(1) space 와 O(n) time으로만 이 작업을 수행해야 합니다.
 
 function countUniqueValues(arr) {
-  let count = {};
-  let result = 0;
-  for (let val of arr) {
-    count[val] = (count[val] || 0) + 1;
+  if (arr.length === 0) {
+    return 0;
   }
-  for (let key in count) {
-    result++;
+  let i = 0;
+  for (let j = 1; j < arr.length; j++) {
+    if (arr[i] < arr[j]) {
+      i++;
+      arr[i] = arr[j];
+    }
   }
-  return result;
+  return i + 1;
 }
